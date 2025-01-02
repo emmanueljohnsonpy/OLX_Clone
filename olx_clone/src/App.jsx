@@ -6,6 +6,8 @@ import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import { AuthContext, FirebaseContext } from "../store/FirebaseContext";
 import { getAuth, onAuthStateChanged } from "firebase/auth"; // Import modular auth
+import Create from "./Pages/Create";
+import View from "./Pages/ViewPost";
 
 function App() {
   const { setUser } = useContext(AuthContext);
@@ -25,6 +27,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/login" element={<Login />} />
+          <Route path="/create" element={<Create />} />
+          <Route path="/view/:id" element={<View />} />
         </Routes>
       </Router>
     </div>

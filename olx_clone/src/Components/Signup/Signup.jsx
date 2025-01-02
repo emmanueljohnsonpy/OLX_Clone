@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
 import Logo from "../../olx-logo.png";
 import "./Signup.css";
 import { FirebaseContext } from "../../../store/FirebaseContext";
@@ -8,7 +8,9 @@ import {
   createUserWithEmailAndPassword,
   updateProfile,
 } from "firebase/auth";
-import { getFirestore, setDoc, doc } from "firebase/firestore"; // Import Firestore functions
+import { getFirestore, setDoc, doc } from "firebase/firestore";
+import { toast, ToastContainer } from "react-toastify"; // Import Toastify
+import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 
 export default function Signup() {
   const [username, setUsername] = useState("");
@@ -16,25 +18,21 @@ export default function Signup() {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const { firebase } = useContext(FirebaseContext);
-  const navigate = useNavigate(); // Initialize useNavigate
+  const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const auth = getAuth(firebase); // Get auth instance from firebase context
-    const firestore = getFirestore(firebase); // Get Firestore instance from firebase context
+    const auth = getAuth(firebase);
+    const firestore = getFirestore(firebase);
 
     try {
-      // Create new user with email and password
       const result = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
-
-      // Update the user's profile with the username
       await updateProfile(result.user, { displayName: username });
 
-      // Store user data in Firestore
       await setDoc(doc(firestore, "users", result.user.uid), {
         id: result.user.uid,
         username: username,
@@ -42,12 +40,10 @@ export default function Signup() {
         phone: phone,
       });
 
-      console.log("User created and data stored successfully:", result.user);
-
-      // Navigate to login page after successful signup
-      navigate("/login");
+      toast.success("Signup successful! Redirecting to login page..."); // Show success toast
+      setTimeout(() => navigate("/login"), 3000); // Delay navigation for better user experience
     } catch (error) {
-      console.error("Error signing up:", error.message);
+      toast.error(`Error signing up: ${error.message}`); // Show error toast
     }
   };
 
@@ -105,6 +101,7 @@ export default function Signup() {
         </form>
         <a href="/login">Login</a>
       </div>
+      <ToastContainer /> {/* Add ToastContainer */}
     </div>
   );
 }

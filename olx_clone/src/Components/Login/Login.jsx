@@ -4,15 +4,19 @@ import { getAuth, signInWithEmailAndPassword } from "firebase/auth";
 import { useNavigate } from "react-router-dom";
 import Logo from "../../olx-logo.png";
 import "./Login.css";
+import { toast, ToastContainer } from "react-toastify"; // Import Toastify
+import "react-toastify/dist/ReactToastify.css"; // Import Toastify CSS
 
 function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const { firebase } = useContext(FirebaseContext); // Get firebase instance
+  const [loading, setLoading] = useState(false); // Loading state
+  const { firebase } = useContext(FirebaseContext);
   const navigate = useNavigate();
 
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true); // Show loading screen
     try {
       const auth = getAuth(firebase); // Initialize authentication
       const userCredential = await signInWithEmailAndPassword(
@@ -21,16 +25,27 @@ function Login() {
         password
       );
 
-      // Success alert
-      // alert("Login successful!");
+      toast.success("Login successful!");
       console.log("User logged in:", userCredential.user);
-      navigate("/");
+
+      navigate("/"); // Navigate to home page
     } catch (error) {
-      // Error alert
+      toast.error(`Error: ${error.message}`);
       console.error("Error logging in:", error.message);
-      alert(`Error: ${error.message}`);
+    } finally {
+      setLoading(false); // Hide loading screen
     }
   };
+
+  if (loading) {
+    // Render loading spinner or page
+    return (
+      <div className="loadingContainer">
+        <div className="spinner"></div>
+        <p>Loading, please wait...</p>
+      </div>
+    );
+  }
 
   return (
     <div>
@@ -64,6 +79,7 @@ function Login() {
         </form>
         <a href="/signup">Signup</a>
       </div>
+      <ToastContainer /> {/* Add ToastContainer */}
     </div>
   );
 }

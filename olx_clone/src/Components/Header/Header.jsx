@@ -27,10 +27,20 @@ function Header() {
       });
   };
 
+  const handleNavigation = () => {
+    navigate("/create");
+  };
+  const handlelogoclick = () => {
+    navigate("/");
+  };
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
-        <div className="brandName">
+        <div
+          className="brandName"
+          onClick={handlelogoclick}
+          style={{ cursor: "pointer" }}
+        >
           <OlxLogo></OlxLogo>
         </div>
         <div className="placeSearch">
@@ -68,7 +78,9 @@ function Header() {
           <SellButton></SellButton>
           <div className="sellMenuContent">
             <SellButtonPlus></SellButtonPlus>
-            <span>SELL</span>
+            <span onClick={handleNavigation} style={{ cursor: "pointer" }}>
+              SELL
+            </span>
           </div>
         </div>
       </div>
