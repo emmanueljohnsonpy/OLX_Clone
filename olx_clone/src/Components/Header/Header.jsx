@@ -33,6 +33,9 @@ function Header() {
   const handlelogoclick = () => {
     navigate("/");
   };
+  const handleloginclick = () => {
+    navigate("login");
+  };
   return (
     <div className="headerParentDiv">
       <div className="headerChildDiv">
@@ -64,7 +67,15 @@ function Header() {
           <Arrow></Arrow>
         </div>
         <div className="loginPage">
-          <span>{user ? `Welcome ${user.displayName}` : "Login"}</span>
+          <span>
+            {user ? (
+              `Welcome ${user.displayName}`
+            ) : (
+              <span onClick={handleloginclick} style={{ cursor: "pointer" }}>
+                "Login"
+              </span>
+            )}
+          </span>
           <hr />
         </div>
         {user && (

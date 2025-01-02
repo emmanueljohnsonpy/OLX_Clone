@@ -8,7 +8,7 @@ import Footer from "../Components/Footer/Footer";
 const recommendationsData = [
   {
     id: 1,
-    image: "../../../Images/1.png",
+    image: "../../../Images/11.jpg",
     price: 4000,
     category: "Gym Equipment",
     name: "40KG Dumbell",
@@ -16,7 +16,7 @@ const recommendationsData = [
   },
   {
     id: 2,
-    image: "../../../Images/2.png",
+    image: "../../../Images/12.jpg",
     price: 250000,
     category: "Bike",
     name: "YAMAHA R15 V4",
@@ -24,7 +24,7 @@ const recommendationsData = [
   },
   {
     id: 3,
-    image: "../../../Images/3.png",
+    image: "../../../Images/13.jpg",
     price: 1000,
     category: "Shoes",
     name: "Pink Running Shoes",
@@ -32,7 +32,7 @@ const recommendationsData = [
   },
   {
     id: 4,
-    image: "../../../Images/4.png",
+    image: "../../../Images/14.jpg",
     price: 30000,
     category: "Phone",
     name: "Iphone 11",
@@ -40,7 +40,7 @@ const recommendationsData = [
   },
   {
     id: 5,
-    image: "../../../Images/5.png",
+    image: "../../../Images/15.jpg",
     price: 500,
     category: "Tshirt",
     name: "Blue Shirt",
@@ -48,7 +48,7 @@ const recommendationsData = [
   },
   {
     id: 6,
-    image: "../../../Images/6.png",
+    image: "../../../Images/16.jpg",
     price: 35000,
     category: "Phone",
     name: "Blue Iphone 12",
@@ -56,7 +56,7 @@ const recommendationsData = [
   },
   {
     id: 7,
-    image: "../../../Images/7.png",
+    image: "../../../Images/17.jpg",
     price: 7000,
     category: "Hoodies",
     name: "Gray color Hoodie",
@@ -64,7 +64,7 @@ const recommendationsData = [
   },
   {
     id: 8,
-    image: "../../../Images/8.png",
+    image: "../../../Images/18.jpg",
     price: 4000,
     category: "Shoes",
     name: "Brown Shoe",
